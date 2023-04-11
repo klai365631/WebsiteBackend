@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ImageController {
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateAdsImage(@RequestParam int id, @RequestBody String image) {
+    public ResponseEntity<?> updateAdsImage(@PathVariable int id, @RequestBody String image) {
         return ResponseEntity.ok().build();
     }
 }

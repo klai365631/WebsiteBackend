@@ -26,42 +26,42 @@ public class AdsController {
     }
 
     @GetMapping("/{ad_pk}/comments")
-    public ResponseEntity<?> getComments(@RequestParam int ad_pk) {
+    public ResponseEntity<?> getComments(@PathVariable String ad_pk) {
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{ad_pk}/comments")
-    public ResponseEntity<?> addComments(@RequestParam int ad_pk, @RequestBody Comment comment) {
+    public ResponseEntity<?> addComments(@PathVariable String ad_pk, @RequestBody Comment comment) {
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getFullAd(@RequestParam int id) {
+    public ResponseEntity<?> getFullAd(@PathVariable int id) {
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> removeAds(@RequestParam int id) {
+    public ResponseEntity<?> removeAds(@PathVariable int id) {
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateAds(@RequestParam int id, @RequestBody CreateAds createAds) {
+    public ResponseEntity<?> updateAds(@PathVariable int id, @RequestBody CreateAds createAds) {
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{ad_pk}/comments/{id}")
-    public ResponseEntity<?> getComments(@RequestParam int id, int ad_pk) {
+    public ResponseEntity<?> getComments(@PathVariable String ad_pk, @PathVariable int id) {
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{ad_pk}/comments/{id}")
-    public ResponseEntity<?> deleteComments(@RequestParam int id, int ad_pk) {
+    public ResponseEntity<?> deleteComments(@PathVariable String ad_pk, @PathVariable int id) {
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{ad_pk}/comments/{id}")
-    public ResponseEntity<?> updateComments(@RequestParam int id, int ad_pk, @RequestBody Comment comment) {
+    public ResponseEntity<?> updateComments(@PathVariable String ad_pk, @PathVariable int id, @RequestBody Comment comment) {
         return ResponseEntity.ok().build();
     }
 
