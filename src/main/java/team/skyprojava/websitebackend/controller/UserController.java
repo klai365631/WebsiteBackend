@@ -15,21 +15,21 @@ import team.skyprojava.websitebackend.dto.User;
 public class UserController {
 
     @PostMapping("/set_password")
-    public ResponseEntity<?> setPassword(@RequestBody NewPassword newPassword) {
+    public ResponseEntity<NewPassword> setPassword(@RequestBody NewPassword newPassword) {
         System.out.println("Проверка set_password");
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new NewPassword());
     }
 
     @GetMapping("/me")
-    public ResponseEntity<?> getUser() {
+    public ResponseEntity<User> getUser() {
         System.out.println("Проверка get_me");
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new User());
     }
 
     @PatchMapping("/me")
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
         System.out.println("Проверка_me");
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new User());
     }
 
     @PatchMapping("/me/image")
