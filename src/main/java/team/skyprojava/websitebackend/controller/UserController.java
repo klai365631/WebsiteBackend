@@ -16,21 +16,25 @@ public class UserController {
 
     @PostMapping("/set_password")
     public ResponseEntity<?> setPassword(@RequestBody NewPassword newPassword) {
+        System.out.println("Проверка set_password");
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/me")
     public ResponseEntity<?> getUser() {
+        System.out.println("Проверка get_me");
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/me")
     public ResponseEntity<?> updateUser(@RequestBody User user) {
+        System.out.println("Проверка_me");
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/me/image")
     public ResponseEntity<?> updateUserImage(@RequestBody String image) {
+        System.out.println("Проверка_me_image");
         return ResponseEntity.ok().build();
     }
 

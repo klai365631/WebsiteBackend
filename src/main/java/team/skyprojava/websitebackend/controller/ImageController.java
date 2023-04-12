@@ -14,6 +14,7 @@ public class ImageController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateAdsImage(@PathVariable int id, @RequestBody String image) {
+        System.out.println("Проверка отклика image_id");
         return ResponseEntity.ok().build();
     }
 }
