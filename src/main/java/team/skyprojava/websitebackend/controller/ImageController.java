@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
@@ -13,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 public class ImageController {
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateAdsImage(@PathVariable int id, @RequestBody String image) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<String>> updateAdsImage(@PathVariable int id, @RequestBody String image) {
+        System.out.println("Проверка отклика image_id");
+        return ResponseEntity.ok(new ArrayList<>());
     }
 }
