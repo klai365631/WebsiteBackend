@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import team.skyprojava.websitebackend.dto.Ads;
-import team.skyprojava.websitebackend.dto.Comment;
-import team.skyprojava.websitebackend.dto.CreateAds;
+import team.skyprojava.websitebackend.dto.*;
 
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
@@ -16,28 +14,28 @@ import team.skyprojava.websitebackend.dto.CreateAds;
 public class AdsController {
 
     @GetMapping
-    public ResponseEntity<?> getAds() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<ResponseWrapperAds> getAllAds() {
+        return ResponseEntity.ok(new ResponseWrapperAds());
     }
 
     @PostMapping
-    public ResponseEntity<?> addAds(@RequestBody Ads ads) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Ads> addAds(@RequestBody CreateAds createAds, String image) {
+        return ResponseEntity.ok(new Ads());
     }
 
     @GetMapping("/{ad_pk}/comments")
-    public ResponseEntity<?> getComments(@PathVariable String ad_pk) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<ResponseWrapperComment> getComments(@PathVariable String ad_pk) {
+        return ResponseEntity.ok(new ResponseWrapperComment());
     }
 
     @PostMapping("/{ad_pk}/comments")
-    public ResponseEntity<?> addComments(@PathVariable String ad_pk, @RequestBody Comment comment) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Comment> addComments(@PathVariable String ad_pk, @RequestBody Comment comment) {
+        return ResponseEntity.ok(new Comment());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getFullAd(@PathVariable int id) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<FullAds> getFullAd(@PathVariable int id) {
+        return ResponseEntity.ok(new FullAds());
     }
 
     @DeleteMapping("/{id}")
@@ -46,13 +44,13 @@ public class AdsController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateAds(@PathVariable int id, @RequestBody CreateAds createAds) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Ads> updateAds(@PathVariable int id, @RequestBody CreateAds createAds) {
+        return ResponseEntity.ok(new Ads());
     }
 
     @GetMapping("/{ad_pk}/comments/{id}")
-    public ResponseEntity<?> getComments(@PathVariable String ad_pk, @PathVariable int id) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Comment> getComments(@PathVariable String ad_pk, @PathVariable int id) {
+        return ResponseEntity.ok(new Comment());
     }
 
     @DeleteMapping("/{ad_pk}/comments/{id}")
@@ -61,12 +59,12 @@ public class AdsController {
     }
 
     @PatchMapping("/{ad_pk}/comments/{id}")
-    public ResponseEntity<?> updateComments(@PathVariable String ad_pk, @PathVariable int id, @RequestBody Comment comment) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Comment> updateComments(@PathVariable String ad_pk, @PathVariable int id, @RequestBody Comment comment) {
+        return ResponseEntity.ok(new Comment());
     }
 
     @GetMapping("/me")
-    public ResponseEntity<?> getAdsMe() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<ResponseWrapperAds> getAdsMe() {
+        return ResponseEntity.ok(new ResponseWrapperAds());
     }
 }
