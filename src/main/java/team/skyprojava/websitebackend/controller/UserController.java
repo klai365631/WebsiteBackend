@@ -15,9 +15,9 @@ import team.skyprojava.websitebackend.dto.User;
 public class UserController {
 
     @PostMapping("/set_password")
-    public ResponseEntity<NewPassword> setPassword(@RequestBody NewPassword newPassword) {
+    public ResponseEntity<?> setPassword(@RequestBody NewPassword newPassword) {
         System.out.println("Проверка set_password");
-        return ResponseEntity.ok(new NewPassword());
+        return ResponseEntity.ok().build();
 
     }
 
