@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import team.skyprojava.websitebackend.dto.NewPassword;
+import org.springframework.web.multipart.MultipartFile;
+import team.skyprojava.websitebackend.dto.NewPasswordDto;
 import team.skyprojava.websitebackend.dto.User;
 
 @Slf4j
@@ -15,7 +16,7 @@ import team.skyprojava.websitebackend.dto.User;
 public class UserController {
 
     @PostMapping("/set_password")
-    public ResponseEntity<?> setPassword(@RequestBody NewPassword newPassword) {
+    public ResponseEntity<?> setPassword(@RequestBody NewPasswordDto newPasswordDto) {
         System.out.println("Проверка set_password");
         return ResponseEntity.ok().build();
 
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @PatchMapping("/me/image")
-    public ResponseEntity<?> updateUserImage(@RequestBody String image) {
+    public ResponseEntity<Void> updateUserImage(@RequestBody MultipartFile image) {
         System.out.println("Проверка_me_image");
         return ResponseEntity.ok().build();
     }

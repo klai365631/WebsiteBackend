@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import team.skyprojava.websitebackend.dto.LoginReq;
-import team.skyprojava.websitebackend.dto.RegisterReq;
+import team.skyprojava.websitebackend.dto.LoginReqDto;
+import team.skyprojava.websitebackend.dto.RegisterReqDto;
 import team.skyprojava.websitebackend.dto.Role;
 import team.skyprojava.websitebackend.service.AuthService;
 
@@ -24,7 +24,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginReq req) {
+    public ResponseEntity<?> login(@RequestBody LoginReqDto req) {
         if (authService.login(req.getUsername(), req.getPassword())) {
             System.out.println("Проверка login");
             return ResponseEntity.ok().build();
@@ -34,7 +34,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterReq req) {
+    public ResponseEntity<?> register(@RequestBody RegisterReqDto req) {
         Role role = req.getRole() == null ? USER : req.getRole();
         if (authService.register(req, role)) {
             System.out.println("Проверка register");
