@@ -5,7 +5,8 @@ import team.skyprojava.websitebackend.entity.Ads;
 
 import java.util.List;
 
-public interface AdsRepository extends JpaRepository<Ads, Long> {
 
-    List<Ads> findAllByAuthorId(long id);
+public interface AdsRepository extends JpaRepository<Ads, Integer> {
+
+    List<Ads> findAllByAuthorId(Integer id);
 }

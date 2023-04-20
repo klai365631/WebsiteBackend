@@ -17,7 +17,7 @@ import java.util.List;
 public class Ads {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ads_id", nullable = false)
+    @Column(name = "ads_id")
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "user_id")

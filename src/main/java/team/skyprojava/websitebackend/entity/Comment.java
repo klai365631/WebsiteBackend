@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class Comment {
     @Id
-    @Column(name = "comment_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "user_id")
