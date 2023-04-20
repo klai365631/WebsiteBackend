@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import team.skyprojava.websitebackend.dto.NewPasswordDto;
-import team.skyprojava.websitebackend.dto.User;
+import team.skyprojava.websitebackend.dto.UserDto;
 
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
@@ -23,15 +23,15 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<User> getUser() {
+    public ResponseEntity<UserDto> getUser() {
         System.out.println("Проверка get_me");
-        return ResponseEntity.ok(new User());
+        return ResponseEntity.ok(new UserDto());
     }
 
     @PatchMapping("/me")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
         System.out.println("Проверка_me");
-        return ResponseEntity.ok(new User());
+        return ResponseEntity.ok(new UserDto());
     }
 
     @PatchMapping("/me/image")
