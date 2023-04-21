@@ -40,9 +40,9 @@ public class CommentController {
             tags = "Comments"
     )
     @GetMapping("/{id}/comments")
-    public ResponseEntity<ResponseWrapperCommentDto> getComments(@PathVariable int id) {
+    public ResponseEntity<ResponseWrapperCommentDto> getComments(@PathVariable long id) {
         logger.info("Request for get ad comment");
-        return ResponseEntity.ok(commentService.getAdsComments());
+        return ResponseEntity.ok(commentService.getAdsComments(id));
     }
 
     @PostMapping("/{id}/comments")
