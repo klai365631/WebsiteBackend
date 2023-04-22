@@ -12,6 +12,7 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     Logger logger = LoggerFactory.getLogger(CommentService.class);
     AdsCommentRepository adsCommentRepository;
+    AdsCommentMapper adsCommentMapper;
     @Override
     public ResponseWrapperCommentDto getAdsComments(long id) {
         logger.info("Was invoked method for get ads comment by id");
