@@ -15,8 +15,8 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 public class UserImage {
     @Id
-    @Column(name = "user_image_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_image_id")
     private Integer id;
     @Column(name = "image")
     private String image;

@@ -6,9 +6,10 @@ import team.skyprojava.websitebackend.entity.Comment;
 import java.util.List;
 import java.util.Optional;
 
-public interface AdsCommentRepository extends JpaRepository<Comment, Long> {
 
-    List<Comment> findAllByAdsId(long adsId);
+public interface AdsCommentRepository extends JpaRepository<Comment, Integer> {
 
-    Optional<Comment> findByIdAndAdsId(long id, long adsId);
+    List<Comment> findAllByAdsId(Integer adsId);
+
+    Optional<Comment> findByIdAndAdsId(Integer id, Integer adsId);
 }

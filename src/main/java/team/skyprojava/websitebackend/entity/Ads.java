@@ -17,9 +17,9 @@ import java.util.List;
 public class Ads {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ads_id", nullable = false)
+    @Column(name = "ads_id")
     private Integer id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User author;
     @Column(name = "price")
@@ -28,10 +28,7 @@ public class Ads {
     private String title;
     @Column(name = "description")
     private String description;
-    @OneToMany
-    @JoinColumn(name = "comment_id")
-    private List<Comment> comments;
-    @OneToMany
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ads_image_id")
-    private List<AdsImage> adsImage;
+    private AdsImage adsImage;
 }
