@@ -20,3 +20,9 @@ ALTER TABLE ads
     ADD FOREIGN KEY (comment_id) REFERENCES comment(comment_id);
 ALTER TABLE ads
     ADD FOREIGN KEY (ads_image_id) REFERENCES ads_image(ads_image_id);
+
+--changeset alla:3
+ALTER TABLE ads
+DROP CONSTRAINT ads_comment_id_fkey;
+ALTER TABLE ads
+DROP COLUMN comment_id;
