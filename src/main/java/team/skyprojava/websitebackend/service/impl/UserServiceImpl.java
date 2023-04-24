@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDto> getUsers() {
         logger.info("Получение всех пользователей");
-        return userMapper.toDto(userRepository.findAll());
+        return (List<UserDto>) userMapper.toDto((User) userRepository.findAll());
     }
 
     @Transactional(readOnly = true)
