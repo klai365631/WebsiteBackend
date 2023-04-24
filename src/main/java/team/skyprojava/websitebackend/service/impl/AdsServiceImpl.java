@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 import team.skyprojava.websitebackend.controller.AdsController;
@@ -34,11 +35,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(value = "http://localhost:3000")
+/**
+ * Реализация сервиса для работы с объявлениями
+ */
+
+
 @RequiredArgsConstructor
-@RestController
-@RequestMapping("/ads")
-@Tag(name = "Объявления", description = "AdsController")
+@Service
 public class AdsServiceImpl implements AdsService {
 
     Logger logger = LoggerFactory.getLogger(AdsController.class);
@@ -50,6 +53,7 @@ public class AdsServiceImpl implements AdsService {
 
     @Override
     public ResponseWrapperAdsDto getAllAds() {
+        logger.info("Service for get all ads");
         List<Ads> adsList = adsRepository.findAll();
         if (!adsList.isEmpty()) {
             List<AdsDto> adsDtoList = new ArrayList<>(adsList.size());
@@ -105,7 +109,21 @@ public class AdsServiceImpl implements AdsService {
 
     @Override
     public ResponseWrapperAdsDto getAdsMe(Authentication authentication) {
-        return null;
+        logger.info("Service for get ads me");
+        User user = userRepository. findByEmail(authentication.getName()).
+                orElseThrow(() -> new UserNotFoundException("User is not found"));
+        List<Ads> adsList = adsRepository.findAllByAuthorId(user.getId());
+        if (!adsList.isEmpty()) {
+            List<AdsDto> adsDtoList = new ArrayList<>(adsList.size());
+            for (Ads a : adsList) {
+                adsDtoList.add(adsMapper.toAdsDto(a));
+            }
+            ResponseWrapperAdsDto result = new ResponseWrapperAdsDto();
+            result.setCount(adsList.size());
+            result.setResults(adsDtoList);
+            return result;
+        }
+        throw new AdsNotFoundException("Ads are not found");
     }
 
 

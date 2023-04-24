@@ -10,6 +10,10 @@ import team.skyprojava.websitebackend.entity.Ads;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Интерфейс сервиса для работы с объявлениями
+ */
+
 public interface AdsService {
 
 

@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +25,10 @@ import java.util.List;
 
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/ads")
-@RequiredArgsConstructor
+@Tag(name = "Объявления", description = "AdsController")
 public class AdsController {
 
     Logger logger = LoggerFactory.getLogger(AdsController.class);
@@ -47,6 +49,7 @@ public class AdsController {
     )
     @GetMapping
     public ResponseEntity<ResponseWrapperAdsDto> getAllAds() {
+        logger.info("Request for found all ads");
         ResponseWrapperAdsDto responseWrapperAdsDto = adsService.getAllAds();
         return ResponseEntity.ok(responseWrapperAdsDto);
     }
@@ -157,6 +160,7 @@ public class AdsController {
     )
     @GetMapping("/me")
     public ResponseEntity<ResponseWrapperAdsDto> getAdsMe(Authentication authentication) {
+        logger.info("Request for found ads me");
         ResponseWrapperAdsDto responseWrapperAdsDto = adsService.getAdsMe(authentication);
         return ResponseEntity.ok(responseWrapperAdsDto);
     }
