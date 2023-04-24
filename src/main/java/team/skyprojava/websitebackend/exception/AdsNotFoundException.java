@@ -9,4 +9,7 @@ public class AdsNotFoundException extends RuntimeException {
         super("Ads with id: " + id + " not found");
     }
 
+    public AdsNotFoundException(String message) {
+        super(message);
+    }
 }
