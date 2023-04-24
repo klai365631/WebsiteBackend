@@ -3,7 +3,6 @@ package team.skyprojava.websitebackend.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import team.skyprojava.websitebackend.dto.UserDto;
@@ -14,13 +13,13 @@ import team.skyprojava.websitebackend.service.UserService;
 import java.util.List;
 @RequiredArgsConstructor
 @Service
-public class UserDetailsServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
-    Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+    Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
 
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserServiceImpl userDetailsService;
     private final UserMapper userMapper;
     @Override
     public List<UserDto> getUsers() {
