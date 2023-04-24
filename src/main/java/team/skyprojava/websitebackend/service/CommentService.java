@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CommentService {
 
-    ResponseWrapperCommentDto getAdsComments(long id);
+    ResponseWrapperCommentDto getAdsComments(int id);
 
 }

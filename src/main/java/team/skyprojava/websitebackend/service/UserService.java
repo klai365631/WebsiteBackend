@@ -8,5 +8,5 @@ public interface UserService {
 
     List<UserDto> getUsers();
 
-    UserDto getUserById(long id);
+    UserDto getUserById(int id);
 }

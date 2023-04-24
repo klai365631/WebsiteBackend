@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import team.skyprojava.websitebackend.controller.AdsController;
 import team.skyprojava.websitebackend.dto.AdsDto;
 import team.skyprojava.websitebackend.entity.Ads;
+import team.skyprojava.websitebackend.mapper.AdsMapper;
 import team.skyprojava.websitebackend.repository.AdsRepository;
 import team.skyprojava.websitebackend.service.AdsService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin(value = "http://localhost:3000")
 @RequiredArgsConstructor
 @RestController
@@ -30,6 +34,7 @@ public class AdsServiceImpl implements AdsService {
     Logger logger = LoggerFactory.getLogger(AdsController.class);
     private final AdsService adsService;
     private final AdsRepository adsRepository;
+    private final AdsMapper adsMapper;
     @Override
     public Ads getAds(long id) {
         return null;
@@ -50,8 +55,9 @@ public class AdsServiceImpl implements AdsService {
     )
     @Override
     public List<AdsDto> getAllAds() {
-        logger.info("Was invoked method for get all ads");
-        return adsMapper.toDto(adsRepository.findAll());
+        List<Ads> adsList = adsRepository.findAll();
+        List<AdsDto> adsDtoList = adsMapper.toAdsDto(adsRepository.findAll());
+        return adsDtoList;
     }
 
 

@@ -43,9 +43,10 @@ public class AdsController {
             tags = "Ads"
     )
     @GetMapping
-    public ResponseEntity<AdsDto> getAllAds() {
+    public ResponseEntity<List<AdsDto>> getAllAds() {
         logger.info("Request for get all ads");
-        return ResponseEntity.ok(new AdsDto());
+        List<AdsDto> adsDtoList = adsService.getAllAds();
+        return ResponseEntity.ok(adsDtoList);
     }
 
     @PostMapping

@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import team.skyprojava.websitebackend.dto.UserDto;
+import team.skyprojava.websitebackend.mapper.UserMapper;
 import team.skyprojava.websitebackend.repository.UserRepository;
 import team.skyprojava.websitebackend.service.UserService;
 
@@ -28,7 +29,7 @@ public class UserDetailsServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserById(long id) {
+    public UserDto getUserById(int id) {
         logger.info("Получение пользователей по id");
         return userMapper.toDto(userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Пользователь с id " + id + " не найден!")));

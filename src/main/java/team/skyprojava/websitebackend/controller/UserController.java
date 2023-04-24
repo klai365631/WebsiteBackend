@@ -74,7 +74,7 @@ public class UserController {
             tags = "Users"
     )
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUser(@PathVariable long id) {
+    public ResponseEntity<UserDto> getUser(@PathVariable int id) {
         logger.info("Request for get user by id");
         try {
             return ResponseEntity.ok(userService.getUserById(id));
