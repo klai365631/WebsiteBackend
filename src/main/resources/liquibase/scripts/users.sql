@@ -18,3 +18,7 @@ CREATE TABLE users
 --changeset alla:2
 ALTER TABLE users
     ADD FOREIGN KEY (user_image_id) REFERENCES user_image(user_image_id);
+
+--changeset alla:3
+ALTER TABLE users
+DROP COLUMN username;
