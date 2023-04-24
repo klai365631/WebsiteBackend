@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import team.skyprojava.websitebackend.dto.*;
 import team.skyprojava.websitebackend.entity.Ads;
+import team.skyprojava.websitebackend.exception.AdsNotFoundException;
 import team.skyprojava.websitebackend.service.AdsService;
 
 import java.util.ArrayList;
@@ -82,27 +83,87 @@ public class AdsController {
             },
             tags = "Ads"
     )
-//    @GetMapping("/{id}")
-//    public ResponseEntity<FullAdsDto> getAds(@PathVariable long id) {
-//        logger.info("Request for get ad by id");
-//        return adsService.getAdsDto(id);
-//    }
+    @GetMapping("/{id}")
+    public FullAdsDto getAds(@PathVariable int id) {
+        logger.info("Request for get ad by id");
+        return adsService.getFullAdsDto(id);
+    }
 
+    @SneakyThrows
+    @Operation(summary = "Удаление объявления",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Удаленное объявление",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Ads.class)
+                            )
+                    ),
+                    @ApiResponse(responseCode = "404", description = "Not Found")
+            },
+            tags = "Ads"
+    )
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> removeAds(@PathVariable int id) {
-        System.out.println("Проверка отклика  removeAd_id");
-        return ResponseEntity.ok().build();
+    public void removeAds(@PathVariable int id) throws AdsNotFoundException {
+        logger.info("Request for delete ad by id");
+        try {
+            adsService.removeAds(id);
+        } catch (AdsNotFoundException e) {
+            throw new AdsNotFoundException("Ad not found with id ");
+        }
     }
 
+    @SneakyThrows
+    @Operation(summary = "Изменение объявления",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Измененное объявление",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = AdsDto.class)
+                            )
+                    ),
+                    @ApiResponse(responseCode = "404", description = "Not Found")
+            },
+            tags = "Ads"
+    )
     @PatchMapping("/{id}")
-    public ResponseEntity<AdsDto> updateAds(@PathVariable int id, @RequestBody CreateAdsDto createAdsDto) {
-        System.out.println("Проверка отклика  updateAds_id");
-        return ResponseEntity.ok(new AdsDto());
+    public ResponseEntity<AdsDto> updateAds(@PathVariable int id,
+                                            @RequestBody CreateAdsDto updatedAdsDto) {
+        logger.info("Request for update ad by id");
+        AdsDto updateAdsDto = adsService.updateAds(id, updatedAdsDto);
+        try{
+            adsService.updateAds(id, updatedAdsDto);
+        } catch (AdsNotFoundException e){
+            throw new AdsNotFoundException("Ad not found with id ");
+        }
+        return ResponseEntity.ok(updateAdsDto);
     }
 
-    @PatchMapping("/{id}/image")
-    public ResponseEntity<byte[]> updateAdsImage(@PathVariable int id, @RequestBody MultipartFile image) {
-        System.out.println("Проверка отклика image_id");
-        return ResponseEntity.ok().build();
+    @Operation(summary = "Просмотр всех моих объявлений",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Все мои объявления",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = AdsDto[].class)
+                            )
+                    )
+            },
+            tags = "Ads"
+    )
+    @GetMapping("/me")
+    public ResponseEntity<ResponseWrapperAdsDto> getAdsMe(Authentication authentication) {
+        ResponseWrapperAdsDto responseWrapperAdsDto = adsService.getAdsMe(authentication);
+        return ResponseEntity.ok(responseWrapperAdsDto);
     }
+
+//    @PatchMapping("/{id}/image")
+//    public ResponseEntity<byte[]> updateAdsImage(@PathVariable int id, @RequestBody MultipartFile image) {
+//        System.out.println("Проверка отклика image_id");
+//        return ResponseEntity.ok().build();
+//    }
 }

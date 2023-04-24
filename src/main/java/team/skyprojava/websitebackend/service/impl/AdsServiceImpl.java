@@ -10,12 +10,15 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 import team.skyprojava.websitebackend.controller.AdsController;
 import team.skyprojava.websitebackend.dto.AdsDto;
 import team.skyprojava.websitebackend.dto.CreateAdsDto;
+import team.skyprojava.websitebackend.dto.FullAdsDto;
 import team.skyprojava.websitebackend.dto.ResponseWrapperAdsDto;
 import team.skyprojava.websitebackend.entity.Ads;
 import team.skyprojava.websitebackend.entity.User;
@@ -43,10 +46,6 @@ public class AdsServiceImpl implements AdsService {
     private final AdsRepository adsRepository;
     private final AdsMapper adsMapper;
     private final UserRepository userRepository;
-    @Override
-    public Ads getAds(long id) {
-        return null;
-    }
 
 
     @Override
@@ -76,7 +75,38 @@ public class AdsServiceImpl implements AdsService {
         return adsMapper.toAdsDto(adsRepository.save(ads));
     }
 
+    @Override
+    public void removeAds(int id) throws IOException {
+        logger.info("Was invoked method for delete ad by id");
+        Ads ads = adsRepository.findById(id)
+                .orElseThrow(() -> new AdsNotFoundException("Объявление с id " + id + " не найдено!"));
+        logger.warn("Ad by id {} not found", id);
+        adsRepository.delete(ads);
+    }
 
+    @Override
+    public AdsDto updateAds(int id, CreateAdsDto updateAdsDto) {
+        logger.info("Was invoked method for update ad by id");
+        Ads updatedAds = adsRepository.findById(id).orElseThrow(() -> new AdsNotFoundException("Объявление с id " + id + " не найдено!"));
+        logger.warn("Ad by id {} not found", id);
+        updatedAds.setTitle(updateAdsDto.getTitle());
+        updatedAds.setDescription(updateAdsDto.getDescription());
+        updatedAds.setPrice(updateAdsDto.getPrice());
+        adsRepository.save(updatedAds);
+        logger.info("ad updated");
+        return adsMapper.toAdsDto(updatedAds);
+    }
+
+    @Override
+    public FullAdsDto getFullAdsDto(int id) {
+        logger.info("Was invoked method for get full ad dto");
+        return adsMapper.toDto(adsRepository.findById(id).orElseThrow(() -> new NotFoundException("Объявление с id " + id + " не найдено!")));
+    }
+
+    @Override
+    public ResponseWrapperAdsDto getAdsMe(Authentication authentication) {
+        return null;
+    }
 
 
 }
