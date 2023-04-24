@@ -1,6 +1,7 @@
 package team.skyprojava.websitebackend.mapper;
 
 
+import io.swagger.v3.oas.models.info.Contact;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -11,7 +12,7 @@ import team.skyprojava.websitebackend.entity.User;
 
 @Mapper
 @Component
-public interface UserMapper{
+public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
@@ -28,4 +29,6 @@ public interface UserMapper{
 
     @Mapping(target = "image", expression = "java(\"/users/\" + user.getId() + \"/image/\")")
     UserDto toDto(User user);
+
+    User userDtoToEntity(Contact user);
 }
