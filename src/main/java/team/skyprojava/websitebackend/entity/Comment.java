@@ -1,9 +1,6 @@
 package team.skyprojava.websitebackend.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +9,6 @@ import java.time.LocalDateTime;
 @Table(name = "comment")
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class Comment {
     @Id

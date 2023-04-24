@@ -67,11 +67,11 @@ public class AdsController {
             },
             tags = "Ads"
     )
-    @GetMapping("/{id}")
-    public ResponseEntity<FullAdsDto> getAds(@PathVariable long id) {
-        logger.info("Request for get ad by id");
-        return adsService.getAdsDto(id);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<FullAdsDto> getAds(@PathVariable long id) {
+//        logger.info("Request for get ad by id");
+//        return adsService.getAdsDto(id);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> removeAds(@PathVariable int id) {

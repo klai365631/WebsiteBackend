@@ -12,7 +12,6 @@ import java.util.List;
 @Table(name = "ads")
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class Ads {
     @Id

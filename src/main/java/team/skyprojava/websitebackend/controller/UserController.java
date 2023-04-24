@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.webjars.NotFoundException;
 import team.skyprojava.websitebackend.dto.NewPasswordDto;
 import team.skyprojava.websitebackend.dto.UserDto;
+import team.skyprojava.websitebackend.mapper.UserMapper;
 import team.skyprojava.websitebackend.service.UserService;
 
 @Slf4j

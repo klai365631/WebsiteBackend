@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Table(name = "user_image")
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class UserImage {
     @Id
