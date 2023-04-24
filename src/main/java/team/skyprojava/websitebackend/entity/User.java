@@ -26,8 +26,6 @@ public class User {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "username")
-    private String username;
     @Column(name = "password")
     private String password;
     @Enumerated(EnumType.STRING)

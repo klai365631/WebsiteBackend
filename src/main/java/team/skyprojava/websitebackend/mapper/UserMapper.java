@@ -17,16 +17,15 @@ public interface UserMapper{
 
     @Mapping(target = "userImage", ignore = true)
     @Mapping(target = "role", ignore = true)
-    @Mapping(target = "username", ignore = true)
     @Mapping(target = "password", ignore = true)
     User toEntity(UserDto userDto);
 
+    @Mapping(target = "email", source = "username")
     @Mapping(target = "role", defaultValue = "USER")
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "email", ignore = true)
     @Mapping(target = "userImage", ignore = true)
     User toEntity(RegisterReqDto registerReqDto);
 
-    @Mapping(target = "image", expression = "java(user.getUserImage().getId().toString())")
+    @Mapping(target = "image", expression = "java(\"/users/\" + user.getId() + \"/image/\")")
     UserDto toDto(User user);
 }

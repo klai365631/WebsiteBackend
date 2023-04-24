@@ -13,16 +13,16 @@ import team.skyprojava.websitebackend.entity.Comment;
 public interface CommentMapper{
 
     CommentMapper INSTANCE = Mappers.getMapper(CommentMapper.class);
-    @Mapping(source = "pk", target = "id")
-    @Mapping(source = "author", target = "author.id")
+    @Mapping(target = "id", source = "pk")
+    @Mapping(target = "author.id", source = "author")
     @Mapping(target = "ads", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     Comment toEntity(CommentDto commentDto);
 
-    @Mapping(source = "author.id", target = "author")
-    @Mapping(source = "author.firstName", target = "authorFirstName")
-    @Mapping(target = "authorImage", expression = "java(comment.getAuthor().getUserImage().getId().toString())")
-    @Mapping(source = "id", target = "pk")
-    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "author", source = "author.id")
+    @Mapping(target = "authorFirstName", source = "author.firstName")
+    @Mapping(target = "authorImage", expression = "java(\"/users/\" + comment.getAuthor().getId() + \"/image/\")")
+    @Mapping(target = "pk", source = "id")
+    @Mapping(target = "createdAt", source = "comment.createdAt", dateFormat = "yyyy-MM-dd HH:mm:ss")
     CommentDto toDto(Comment comment);
 }
