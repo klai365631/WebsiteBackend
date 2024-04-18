@@ -1,22 +1,11 @@
 package team.skyprojava.websitebackend.service.impl;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
-import team.skyprojava.websitebackend.controller.AdsController;
 import team.skyprojava.websitebackend.dto.AdsDto;
 import team.skyprojava.websitebackend.dto.CreateAdsDto;
 import team.skyprojava.websitebackend.dto.FullAdsDto;
@@ -33,7 +22,6 @@ import team.skyprojava.websitebackend.service.AdsService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Реализация сервиса для работы с объявлениями
